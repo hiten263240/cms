@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_sections_blog_grids",
+  "info": {
+    "displayName": "BlogGrid"
+  },
+  "options": {},
+  "attributes": {
+    "blogs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog.blog"
+    }
+  },
+  "config": {}
+}

@@ -441,17 +441,38 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    content: Schema.Attribute.Text;
+    Category: Schema.Attribute.Enumeration<
+      [
+        'API Reference',
+        '  Integration Guide',
+        '  User Guide',
+        '  Architecture',
+        '  How-to',
+        '  FAQ',
+        '  Release Notes',
+        '  Operations',
+        '  Thought Leadership',
+        '  Product Updates',
+        '  Case Study',
+        '  Industry Insights',
+        '  Engineering',
+        '  Customer Story',
+      ]
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Blocks;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::blog.blog'> &
       Schema.Attribute.Private;
-    product: Schema.Attribute.Relation<'oneToOne', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
+    RevisionNote: Schema.Attribute.Text;
+    RTE: Schema.Attribute.RichText;
+    Slug: Schema.Attribute.String;
+    Summary: Schema.Attribute.Text;
+    Tag: Schema.Attribute.JSON &
+      Schema.Attribute.CustomField<'plugin::tagsinput.tags'>;
+    Title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -469,9 +490,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    ContentBlocks: Schema.Attribute.DynamicZone<
-      ['sections.product-showcase', 'sections.blog-grid']
-    >;
+    ContentBlocks: Schema.Attribute.DynamicZone<[]>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -498,24 +517,42 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    blog: Schema.Attribute.Relation<'oneToOne', 'api::blog.blog'>;
-    blogs: Schema.Attribute.Relation<'oneToMany', 'api::blog.blog'>;
+    AccessLevel: Schema.Attribute.Enumeration<
+      ['Public', 'Partner', 'Customer', 'Internal']
+    >;
+    Category: Schema.Attribute.Enumeration<
+      [
+        'Process Delivery',
+        'Voice Governance',
+        'Unified Runtime',
+        'Proactive Engagement',
+        'Analytics',
+        'Healthcare',
+      ]
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
+    Description: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::product.product'
     > &
       Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    price: Schema.Attribute.Decimal;
+    owner: Schema.Attribute.String;
+    ProductName: Schema.Attribute.String & Schema.Attribute.Required;
+    ProductStatus: Schema.Attribute.Enumeration<
+      ['Active', 'Draft', 'Archived']
+    >;
     publishedAt: Schema.Attribute.DateTime;
+    Slug: Schema.Attribute.String;
+    Tag: Schema.Attribute.JSON &
+      Schema.Attribute.CustomField<'plugin::tagsinput.tags'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    WebsiteURL: Schema.Attribute.String;
   };
 }
 

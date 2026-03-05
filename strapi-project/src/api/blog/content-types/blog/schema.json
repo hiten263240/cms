@@ -11,20 +11,43 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
+    "Title": {
       "type": "string"
     },
-    "content": {
+    "Slug": {
+      "type": "string"
+    },
+    "Category": {
+      "type": "enumeration",
+      "enum": [
+        "API Reference",
+        "  Integration Guide",
+        "  User Guide",
+        "  Architecture",
+        "  How-to",
+        "  FAQ",
+        "  Release Notes",
+        "  Operations",
+        "  Thought Leadership",
+        "  Product Updates",
+        "  Case Study",
+        "  Industry Insights",
+        "  Engineering",
+        "  Customer Story"
+      ]
+    },
+    "Summary": {
       "type": "text"
     },
-    "product": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::product.product",
-      "inversedBy": "blog"
+    "Tag": {
+      "type": "customField",
+      "customField": "plugin::tagsinput.tags"
     },
-    "description": {
-      "type": "blocks"
+    "RevisionNote": {
+      "type": "text"
+    },
+    "RTE": {
+      "type": "richtext"
     }
   }
 }

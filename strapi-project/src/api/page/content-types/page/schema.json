@@ -20,10 +20,7 @@
     },
     "ContentBlocks": {
       "type": "dynamiczone",
-      "components": [
-        "sections.product-showcase",
-        "sections.blog-grid"
-      ]
+      "components": []
     }
   }
 }

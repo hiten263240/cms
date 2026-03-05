@@ -11,25 +11,54 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "name": {
+    "ProductName": {
+      "type": "string",
+      "required": true
+    },
+    "Slug": {
       "type": "string"
     },
-    "description": {
+    "Description": {
       "type": "text"
     },
-    "price": {
-      "type": "decimal"
+    "Category": {
+      "type": "enumeration",
+      "enum": [
+        "Process Delivery",
+        "Voice Governance",
+        "Unified Runtime",
+        "Proactive Engagement",
+        "Analytics",
+        "Healthcare"
+      ]
     },
-    "blogs": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::blog.blog"
+    "AccessLevel": {
+      "type": "enumeration",
+      "enum": [
+        "Public",
+        "Partner",
+        "Customer",
+        "Internal"
+      ]
     },
-    "blog": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::blog.blog",
-      "mappedBy": "product"
+    "owner": {
+      "type": "string"
+    },
+    "ProductStatus": {
+      "type": "enumeration",
+      "enum": [
+        "Active",
+        "Draft",
+        "Archived"
+      ]
+    },
+    "WebsiteURL": {
+      "type": "string",
+      "regex": "https?://...*"
+    },
+    "Tag": {
+      "type": "customField",
+      "customField": "plugin::tagsinput.tags"
     }
   }
 }

@@ -467,7 +467,13 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     RevisionNote: Schema.Attribute.Text;
-    RTE: Schema.Attribute.RichText;
+    RTE: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
     Slug: Schema.Attribute.String;
     Summary: Schema.Attribute.Text;
     Tag: Schema.Attribute.JSON &
